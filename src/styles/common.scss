@@ -17,6 +17,7 @@ body {
     height: 100%;
   }
   
+  
   *,
   *:before,
   *:after {
@@ -184,6 +185,17 @@ body {
   }
   .vertical-bottom {
     vertical-align: text-bottom !important;
+  }
+
+  .border-box{
+    box-sizing: border-box;
+  }
+
+  .bg-white{
+    background-color: #fff;
+  }
+  .opacity-zero{
+    opacity: 0;
   }
   
   [v-cloak] {

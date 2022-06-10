@@ -20,13 +20,8 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-type headerType={
-  title:string,
-  icon:string,
-  callFunction?:VoidFunction
-}
-
+<script lang="ts" setup name="topHeader">
+import {IHeaderType} from "./data"
 //预览
 const handlePreview=():void=>{
   console.log(123)
@@ -37,7 +32,7 @@ const handleSaveTemplate=():void=>{
   console.log(778)
 }
 
-const headerList=<Array<headerType>>[  
+const headerList:IHeaderType[]=[  
   {
     title: '预览',
     icon: 'preview',
@@ -82,7 +77,7 @@ $actionColor: rgba(0, 0, 0, 0.65);
   width: 100%;
   height: 100%;
   position: relative;
-  padding: 0 5%;
+  padding: 0 3%;
   .header-logo {
     height: 100%;
     .header-title {

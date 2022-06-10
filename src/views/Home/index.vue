@@ -1,94 +1,55 @@
 <template>
   <div class="page-container relative">
-    <div class="page-header">
+    <div class="page-header border-box bg-white">
       <Header />
     </div>
     <div class="main-container flex">
-      <div class="component-list">
-        <el-scrollbar style="width: 256px; height: 100%" class="scrollbar-wrapper">
-          <!-- <draggable
-            :group="{ name: 'componentDrag', pull: 'clone' }"
-            :sort="false"
-            animation="300"
-            draggable=".components-item"
-            @end="handleEnd"
-            v-model="componentList"
-            :clone="cloneComponent"
-          >
-            <div
-              v-for="item in componentList"
-              :key="item.id"
-              class="boxder-box relative components-item"
-            >
-              <p class="text-center title">{{ item.title }}</p>
-            </div>
-          </draggable> -->
-        </el-scrollbar>
+      <left-component />
+      <div class="center flex-sub bg-white relative" ref="cutScreen">
+        <draggable
+          group="componentDrag"
+          animation="340"
+          v-model="drawingList"
+          ghostClass="opacity-zero"
+          style="height: 100%"
+          item-key="id"
+        >
+          <template #item="{ element }">
+            <div class="border-box relative components-item text-center"></div>
+          </template>
+        </draggable>
       </div>
-      <div class="center flex-sub relative"></div>
-      <div class="right">
-        <!-- <right-setting /> -->
-      </div>
+      <right-setting />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import RightSetting from './components/rightSetting.vue'
 import Header from './components/header.vue'
+import leftComponent from './components/leftComponent.vue'
+import RightSetting from './components/rightSetting.vue'
 import draggable from 'vuedraggable'
 
-const componentList = [
-  {
-    title: 'input输入框'
-  },
-  {
-    title: 'select下拉框'
-  }
-]
-
-const drawList = []
-
-let currentMove = {}
-
-let boxId = 1
-
-//点击选中该盒子，克隆
-const cloneComponent = (e: any) => {
-  currentMove = {
-    id: boxId++,
-    ...e
-  }
-}
-
-//拖动结束，从左边拖到右边
-const handleEnd = () => {
-  drawList.push({
-    ...currentMove
-  })
-}
+const drawingList = []
 </script>
 
 <style lang="scss" scoped>
+$pageBgColor: rgb(231, 231, 231);
+
 .page-container {
-  background: #fff;
+  background: $pageBgColor;
   width: 100%;
   height: 100%;
   overflow: hidden;
   .page-header {
     height: 52px;
     line-height: 50px;
-    box-shadow: 0 1px 4px #d9d9d9;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
   .main-container {
     width: 100%;
     position: relative;
     height: calc(100% - 44px);
-    .components-list {
-      .components-item {
-        padding: 10px 16px;
-      }
-    }
   }
 }
 </style>
