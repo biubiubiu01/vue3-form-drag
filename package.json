@@ -2,83 +2,64 @@
     "name": "vue3-form-drag",
     "private": true,
     "version": "0.0.0",
+    "type": "module",
     "scripts": {
-      "lint": "eslint src",
-      "dev": "vite",
-      "build": "npm run lint && vue-tsc --noEmit && vite build",
-      "preview": "vite preview",
-      "prepare": "husky install"
+        "dev": "vite",
+        "start": "vite dev",
+        "build": "vue-tsc && vite build",
+        "preview": "vite preview",
+        "lint": "eslint --ext=vue,js src",
+        "lint:fix": "eslint --ext=vue,js --fix src",
+        "prepare": "husky install"
     },
     "dependencies": {
-      "@element-plus/icons-vue": "^2.0.4",
-      "element-plus": "^2.2.2",
-      "normalize.css": "^8.0.1",
-      "pinia": "^2.0.14",
-      "vue": "^3.2.25",
-      "vue-router": "^4.0.15",
-      "vuedraggable": "^4.1.0"
+        "@vueuse/core": "^10.1.2",
+        "axios": "^1.4.0",
+        "element-plus": "^2.3.4",
+        "pinia": "^2.1.1",
+        "vue": "^3.2.47",
+        "vue-router": "^4.2.0",
+        "vuedraggable": "^4.1.0"
     },
     "devDependencies": {
-      "@commitlint/cli": "^17.0.2",
-      "@commitlint/config-conventional": "^17.0.2",
-      "@types/node": "^17.0.35",
-      "@typescript-eslint/eslint-plugin": "^5.27.1",
-      "@typescript-eslint/parser": "^5.27.1",
-      "@vitejs/plugin-vue": "^2.3.3",
-      "cz-conventional-changelog": "^3.3.0",
-      "cz-customizable": "^6.3.0",
-      "eslint": "^8.17.0",
-      "eslint-config-airbnb": "^19.0.4",
-      "eslint-config-airbnb-base": "^15.0.0",
-      "eslint-config-prettier": "^8.5.0",
-      "eslint-plugin-import": "^2.26.0",
-      "eslint-plugin-prettier": "^4.0.0",
-      "eslint-plugin-vue": "^9.1.0",
-      "fast-glob": "^3.2.11",
-      "husky": "^8.0.1",
-      "lint-staged": "^13.0.0",
-      "prettier": "^2.6.2",
-      "sass": "^1.52.1",
-      "typescript": "^4.5.4",
-      "unplugin-auto-import": "^0.8.7",
-      "unplugin-icons": "^0.14.3",
-      "unplugin-vue-components": "^0.18.4",
-      "vite": "^2.9.9",
-      "vite-plugin-optimize-persist": "^0.1.2",
-      "vite-plugin-package-config": "^0.1.1",
-      "vite-plugin-style-import": "^2.0.0",
-      "vite-plugin-svg-icons": "^2.0.1",
-      "vite-plugin-vue-setup-extend": "^0.4.0",
-      "vue-tsc": "^0.34.7"
+        "@commitlint/cli": "^17.6.3",
+        "@commitlint/config-conventional": "^17.6.3",
+        "@typescript-eslint/eslint-plugin": "^5.59.6",
+        "@typescript-eslint/parser": "^5.59.6",
+        "@vitejs/plugin-vue": "^4.1.0",
+        "commitizen": "^4.3.0",
+        "eslint": "^7.32.0 || ^8.2.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-n": "^16.0.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-promise": "^6.1.1",
+        "eslint-plugin-vue": "^9.13.0",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.2.2",
+        "prettier": "^2.8.8",
+        "sass": "^1.62.1",
+        "typescript": "^5.0.2",
+        "unplugin-auto-import": "^0.16.0",
+        "unplugin-vue-components": "^0.24.1",
+        "vite": "^4.3.2",
+        "vue-tsc": "^1.4.2"
     },
     "lint-staged": {
-      "*.{js,jsx,ts,tsx}": [
-        "eslint --fix",
-        "prettier --write"
-      ],
-      "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
-        "prettier --write--parser json"
-      ],
-      "package.json": [
-        "prettier --write"
-      ],
-      "*.vue": [
-        "eslint --fix",
-        "prettier --write",
-        "stylelint --fix"
-      ],
-      "*.{scss,less,styl,html}": [
-        "stylelint --fix",
-        "prettier --write"
-      ],
-      "*.md": [
-        "prettier --write"
-      ]
-    },
-    "config": {
-      "commitizen": {
-        "path": "node_modules/cz-customizable"
-      }
+        "*.{js,ts,tsx,jsx,vue}": [
+            "eslint --fix",
+            "prettier --write",
+            "git add"
+        ],
+        "{!(package)*.json,*.code-snippets,.!(browserslist)*rc}": [
+            "prettier --write--parser json"
+        ],
+        "package.json": [
+            "prettier --write"
+        ],
+        "*.md": [
+            "prettier --write"
+        ]
     }
-  }
-  
+}

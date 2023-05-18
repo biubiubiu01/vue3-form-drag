@@ -1,22 +1,5 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from '@/router/index.ts'
+import { createApp } from "vue";
+import "./style.css";
+import App from "./App.vue";
 
-// import 'element-plus/dist/index.css'
-
-import '@/styles/common.scss'
-
-import 'normalize.css'
-
-import 'virtual:svg-icons-register'
-
-const app = createApp(App)
-
-import { setupStore } from './store'
-
-setupStore(app)
-
-
-app.use(router).mount('#app')
-
-
+createApp(App).mount("#app");

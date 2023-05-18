@@ -1,24 +1,10 @@
-# npm包
-/node_modules
-package-lock.json
+/dist/*
+.local
+.output.js
+*.svg
+/node_modules/**
 
-# build产物
-/dist
-/types
-/public/*
-
-# eslint
-.eslintcache
-
-# jest
-/coverage
-
-# svg
 **/*.svg
+**/*.sh
 
-
-# docs api文档
-/docs
-
-#webstorm
-.idea
+/public/*
