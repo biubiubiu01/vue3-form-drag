@@ -23,5 +23,5 @@ module.exports = {
     // 跳过问题
     skipQuestions: ["scope", "body", "footer"],
     // subject文字长度限制默认是72
-    subjectLimit: 100
+    subjectLimit: 95
 };
