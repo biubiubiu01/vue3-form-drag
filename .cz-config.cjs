@@ -1,11 +1,3 @@
-/*
- * @Author: lzy
- * @Date: 2023-05-18 17:29:34
- * @LastEditors: lzy
- * @LastEditTime: 2023-05-18 18:07:00
- * @FilePath: \vue3-form-drag\.cz-config.js
- *
- */
 module.exports = {
     // 可选类型
     types: [
