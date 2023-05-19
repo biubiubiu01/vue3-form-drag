@@ -9,6 +9,7 @@ specifiers:
   '@vueuse/core': ^10.1.2
   axios: ^1.4.0
   commitizen: ^4.3.0
+  cz-conventional-changelog: ^3.3.0
   element-plus: ^2.3.4
   eslint: ^7.32.0 || ^8.2.0
   eslint-config-prettier: ^8.8.0
@@ -48,6 +49,7 @@ devDependencies:
   '@typescript-eslint/parser': 5.59.6_3qfatcekpgbllh6uk5ivyhkbxq
   '@vitejs/plugin-vue': 4.2.3_vite@4.3.7+vue@3.3.4
   commitizen: 4.3.0
+  cz-conventional-changelog: 3.3.0
   eslint: 8.40.0
   eslint-config-prettier: 8.8.0_eslint@8.40.0
   eslint-config-standard: 17.0.0_v2ziigrulheo3hcb52lqobkafq
