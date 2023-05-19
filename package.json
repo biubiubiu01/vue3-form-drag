@@ -57,11 +57,6 @@
         "vite": "^4.3.2",
         "vue-tsc": "^1.4.2"
     },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "lint-staged": {
         "*.{js,ts,tsx,jsx,vue}": [
             "eslint --fix",
