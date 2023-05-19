@@ -2,7 +2,7 @@
  * @Author: lzy
  * @Date: 2023-05-18 17:11:36
  * @LastEditors: lzy
- * @LastEditTime: 2023-05-19 10:26:12
+ * @LastEditTime: 2023-05-19 11:43:27
  * @FilePath: \vue3-form-drag\commitlint.config.cjs
  *
  */
