@@ -1,0 +1,164 @@
+.editor-container {
+    background-color: var(--el-fill-color);
+    .el-header {
+        padding: 0;
+        margin-bottom: 2px;
+    }
+    .editor-header {
+        height: 100%;
+        margin-bottom: 2px;
+        padding: 8px 20px;
+        background-color: var(--el-bg-color);
+
+        .editor-header-logo {
+            background: url("https://img.alicdn.com/imgextra/i4/O1CN013w2bmQ25WAIha4Hx9_!!6000000007533-55-tps-137-26.svg");
+            width: 139px;
+            height: 26px;
+            cursor: pointer;
+            background-size: contain;
+            background-position: 50%;
+            background-repeat: no-repeat;
+        }
+        .editor-header-github {
+            cursor: pointer;
+            font-size: 15px;
+        }
+    }
+    .mian-container {
+        height: calc(100vh - 50px);
+    }
+    .panel-container {
+        height: 100%;
+        background-color: var(--el-bg-color);
+        box-shadow: 4px 6px 6px 0 rgba(31, 50, 88, 0.08);
+
+        .el-tabs__content {
+            flex: 1;
+            .el-tab-pane {
+                height: 100%;
+            }
+        }
+    }
+    .setting-panel {
+        .panel-item {
+            width: 130px;
+        }
+        .el-form-item {
+            margin-bottom: 12px;
+            padding: 0 12px;
+            &.not-label {
+                .el-form-item__label {
+                    display: none;
+                }
+            }
+        }
+        .plr12 {
+            padding: 0 12px;
+        }
+        .el-collapse-item__header {
+            padding-left: 12px;
+        }
+        .el-collapse-item__wrap {
+            background-color: var(--el-fill-color-light);
+            border-top: 1px solid var(--el-border-color);
+            border-bottom: 1px solid var(--el-border-color);
+            .el-collapse-item__content {
+                padding-bottom: 0;
+                padding-top: 10px;
+            }
+        }
+        .el-radio {
+            margin-right: 10px;
+        }
+    }
+
+    .base-widget-container {
+        height: 100%;
+        .base-widget-input {
+            margin: 0 18px 12px;
+        }
+        .el-collapse-item__content {
+            padding-bottom: 0;
+        }
+        .drag-list {
+            display: grid;
+            box-sizing: border-box;
+            margin: 5px;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--el-border-color);
+            border-left: 1px solid var(--el-border-color);
+            .components-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                color: var(--el-text-color-regular);
+                height: 75px;
+                font-size: 13px;
+                border-right: 1px solid var(--el-border-color);
+                border-bottom: 1px solid var(--el-border-color);
+                transition: background-color var(--el-transition-duration);
+                cursor: move;
+                &:hover {
+                    background-color: var(--el-border-color-extra-light);
+                    color: var(--el-color-primary);
+                }
+            }
+        }
+    }
+    .form-widget-container {
+        background-color: var(--el-bg-color);
+        height: 100%;
+        box-shadow: 0 1px 4px 0 rgba(31, 50, 88, 0.125);
+        .drag-form-item {
+            min-height: 40px;
+            box-sizing: border-box;
+            padding: 5px 10px;
+            cursor: move;
+            position: relative;
+            &.active {
+                background-color: var(--el-border-color-extra-light);
+                .drag-form-item-operate {
+                    display: block;
+                }
+            }
+            .drag-form-item-operate {
+                display: none;
+                position: absolute;
+                right: 0;
+                bottom: -4px;
+                padding: 0 4px;
+                .operate-icon {
+                    background: var(--el-color-primary);
+                    border-radius: 50%;
+                    padding: 5px;
+                    box-sizing: content-box;
+                    color: #fff;
+                    &:last-of-type {
+                        background: #f56c6c;
+                    }
+                }
+            }
+        }
+        .drag-ghost {
+            position: relative;
+            display: flex;
+            align-items: center;
+            opacity: 0.7;
+            .components-item-icon {
+                margin-right: 5px;
+            }
+            &::before {
+                content: " ";
+                position: absolute;
+                left: -20px;
+                right: -20px;
+                top: -5px;
+                height: 3px;
+                background: var(--el-color-primary);
+                z-index: 2;
+            }
+        }
+    }
+}
