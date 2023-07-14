@@ -16,3 +16,60 @@ export const positionOption = [
         value: "right"
     }
 ];
+
+export const formPositionOption = [
+    {
+        label: "左",
+        value: "left"
+    },
+    {
+        label: "右",
+        value: "right"
+    },
+    {
+        label: "顶部",
+        value: "top"
+    }
+];
+
+export const verticalOption = [
+    {
+        label: "top",
+        value: "top"
+    },
+    {
+        label: "middle",
+        value: "middle"
+    },
+    {
+        label: "bottom",
+        value: "bottom"
+    }
+];
+
+export const horizontalOption = [
+    {
+        label: "start",
+        value: "start"
+    },
+    {
+        label: "end",
+        value: "end"
+    },
+    {
+        label: "center",
+        value: "center"
+    },
+    {
+        label: "space-around",
+        value: "space-around"
+    },
+    {
+        label: "space-between",
+        value: "space-between"
+    },
+    {
+        label: "space-evenly",
+        value: "space-evenly"
+    }
+];

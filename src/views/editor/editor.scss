@@ -41,34 +41,21 @@
     }
     .setting-panel {
         .panel-item {
-            width: 130px;
+            width: 73px;
+            text-align: center;
         }
         .el-form-item {
-            margin-bottom: 12px;
-            padding: 0 12px;
-            &.not-label {
-                .el-form-item__label {
-                    display: none;
-                }
-            }
-        }
-        .plr12 {
-            padding: 0 12px;
-        }
-        .el-collapse-item__header {
             padding-left: 12px;
+            padding-right: 12px;
+            margin-bottom: 12px;
         }
-        .el-collapse-item__wrap {
-            background-color: var(--el-fill-color-light);
-            border-top: 1px solid var(--el-border-color);
-            border-bottom: 1px solid var(--el-border-color);
-            .el-collapse-item__content {
-                padding-bottom: 0;
-                padding-top: 10px;
+        .el-collapse {
+            .el-collapse-item__header {
+                padding: 0 12px;
             }
-        }
-        .el-radio {
-            margin-right: 10px;
+            .el-collapse-item__content {
+                padding: 12px;
+            }
         }
     }
 
@@ -117,11 +104,47 @@
             padding: 5px 10px;
             cursor: move;
             position: relative;
+            width: 100%;
+            & + .drag-form-item {
+                margin-top: 10px;
+            }
             &.active {
                 background-color: var(--el-border-color-extra-light);
+                padding-bottom: 30px;
                 .drag-form-item-operate {
                     display: block;
                 }
+                .drag-form-item-name {
+                    display: block;
+                }
+                &.is-wrapper {
+                    .drag-form-item {
+                        .drag-form-item-operate {
+                            display: none !important;
+                        }
+                        .drag-form-item-name {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+            &.is-wrapper {
+                border: 1px dashed var(--el-border-color);
+                .el-form {
+                    padding-bottom: 0 !important;
+                    .drag-form-item {
+                        padding: 0;
+                        margin-top: 0;
+                    }
+                }
+            }
+            .drag-form-item-name {
+                display: none;
+                position: absolute;
+                right: 5px;
+                top: 2px;
+                color: var(--el-color-primary);
+                font-size: 14px;
             }
             .drag-form-item-operate {
                 display: none;

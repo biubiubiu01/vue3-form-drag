@@ -28,7 +28,6 @@ const inputSetting = [
                 name: "日期类型",
                 field: "type",
                 props: {
-                    defaultValue: "daterange",
                     options: dateRangeOption,
                     onChange: (val: string) => {
                         const findItem = dateRangeOption.find((item) => item.value === val);
@@ -41,25 +40,16 @@ const inputSetting = [
             {
                 name: "显示格式",
                 field: "format",
-                componentName: "input",
-                props: {
-                    defaultValue: "YYYY/MM/DD"
-                }
+                componentName: "input"
             },
             {
                 name: "值格式",
                 field: "value-format",
-                componentName: "input",
-                props: {
-                    defaultValue: "YYYY-MM-DD"
-                }
+                componentName: "input"
             },
             {
                 name: "显示清空",
                 field: "clearable",
-                props: {
-                    defaultValue: true
-                },
                 componentName: "switch"
             },
             {
@@ -77,17 +67,13 @@ const inputSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             },
             {
                 name: "前缀图标",
                 field: "prefix-icon",
-                componentName: "icon-select",
-                props: {
-                    defaultValue: "Date"
-                }
+                componentName: "icon-select"
             }
         ]
     }

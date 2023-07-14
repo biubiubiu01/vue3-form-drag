@@ -9,8 +9,15 @@ export default {
     formItem: {
         label: "时间选择器"
     },
+    col: {
+        span: 24
+    },
     description: "时间选择器组件",
     renderCode,
-    props: {},
+    props: {
+        format: "HH:mm:ss",
+        clearable: true,
+        "prefix-icon": "Calendar"
+    },
     config: setting
 };

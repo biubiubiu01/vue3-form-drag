@@ -2,13 +2,13 @@
  * @Author: lzy
  * @Date: 2023-05-22 11:11:47
  * @LastEditors: lzy
- * @LastEditTime: 2023-05-31 15:20:39
+ * @LastEditTime: 2023-06-20 11:31:24
  * @FilePath: \vue3-form-drag\src\views\editor\components\widget-panel\components\column.data.ts
  */
 
 import { useWidgetList } from "@/hooks/useWidgetList";
 
-const { getFormWidgetList, getCustomWidgetList } = useWidgetList();
+const { getFormWidgetList, getCustomWidgetList, getLayoutWidgetList } = useWidgetList();
 
 export const basicComponents = [
     {
@@ -21,7 +21,7 @@ export const basicComponents = [
         title: "布局容器",
         type: "layout",
         icon: "svg-layout",
-        children: []
+        children: getLayoutWidgetList
     },
     {
         title: "自定义组件",

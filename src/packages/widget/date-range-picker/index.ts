@@ -9,8 +9,17 @@ export default {
     formItem: {
         label: "日期区间"
     },
+    col: {
+        span: 24
+    },
     description: "日期区间组件",
     renderCode,
-    props: {},
+    props: {
+        type: "daterange",
+        format: "YYYY/MM/DD",
+        "value-format": "YYYY-MM-DD",
+        clearable: true,
+        "prefix-icon": "Calendar"
+    },
     config: setting
 };

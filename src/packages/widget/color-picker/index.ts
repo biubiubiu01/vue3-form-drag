@@ -9,6 +9,9 @@ export default {
     formItem: {
         label: "颜色选择器"
     },
+    col: {
+        span: 24
+    },
     description: "颜色选择器",
     renderCode,
     props: {},

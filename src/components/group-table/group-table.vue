@@ -41,10 +41,6 @@ const list: any = useVModel(props, "modelValue", emit, { passive: true, defaultV
 
 const { getComponent } = useWidgetList();
 
-if (props.defaultValue) {
-    emit("update:modelValue", props.defaultValue);
-}
-
 const handleAddRow = () => {
     list.value.push({});
 };

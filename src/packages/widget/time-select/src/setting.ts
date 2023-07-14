@@ -22,16 +22,13 @@ const inputSetting = [
                 name: "显示格式",
                 field: "format",
                 componentName: "input",
-                props: {
-                    defaultValue: "HH:mm"
-                }
+                props: {}
             },
             {
                 name: "开始时间",
                 field: "start",
                 componentName: "time-picker",
                 props: {
-                    defaultValue: "09:00",
                     format: "HH:mm",
                     "value-format": "HH:mm"
                 }
@@ -41,7 +38,6 @@ const inputSetting = [
                 field: "end",
                 componentName: "time-picker",
                 props: {
-                    defaultValue: "18:00",
                     format: "HH:mm",
                     "value-format": "HH:mm"
                 }
@@ -51,7 +47,6 @@ const inputSetting = [
                 field: "step",
                 componentName: "time-picker",
                 props: {
-                    defaultValue: "00:30",
                     format: "HH:mm",
                     "value-format": "HH:mm"
                 }
@@ -77,9 +72,7 @@ const inputSetting = [
             {
                 name: "显示清空",
                 field: "clearable",
-                props: {
-                    defaultValue: true
-                },
+                props: {},
                 componentName: "switch"
             },
             {
@@ -97,8 +90,7 @@ const inputSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             }
         ]

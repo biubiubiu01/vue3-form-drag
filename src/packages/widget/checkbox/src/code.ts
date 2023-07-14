@@ -1,7 +1,7 @@
 import { transfromObject, omit } from "@/utils";
 
 const renderCode = (config: any) => {
-    return `<el-checkbox-group v-model="formModel.${config.model}">
+    return `<el-checkbox-group v-model="formModel.${config.formItem.prop}">
          ${renderCheckbox(config.props)}
     </el-checkbox-group>`;
 };

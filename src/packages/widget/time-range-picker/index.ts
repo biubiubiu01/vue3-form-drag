@@ -12,7 +12,13 @@ export default {
     description: "时间区间组件",
     renderCode,
     props: {
-        "is-range": true
+        "is-range": true,
+        format: "HH:mm:ss",
+        clearable: true,
+        "prefix-icon": "Calendar"
+    },
+    col: {
+        span: 24
     },
     config: setting
 };

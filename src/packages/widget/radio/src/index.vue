@@ -1,11 +1,3 @@
-<!--
- * @Author: lzy
- * @Date: 2023-05-30 10:24:17
- * @LastEditors: lzy
- * @LastEditTime: 2023-06-05 13:56:20
- * @FilePath: \vue3-form-drag\src\packages\widget\radio\src\index.vue
- * 
--->
 <template>
     <el-radio-group v-model="value">
         <template v-if="shape === 'button'">
@@ -40,8 +32,4 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 const value: any = useVModel(props, "modelValue", emit, { passive: true, defaultValue: props.defaultValue });
-
-if (props.defaultValue) {
-    emit("update:modelValue", unref(value));
-}
 </script>

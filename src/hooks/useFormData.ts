@@ -1,6 +1,6 @@
 import { useStorage } from "./useStorage";
 import { ElMessage } from "element-plus";
-import { deepClone } from "@/utils";
+import { deepClone, omit } from "@/utils";
 import { useNanoid } from "./useNanoid";
 
 const { setItem, getItem } = useStorage();
@@ -8,55 +8,73 @@ const sessionKey = "PAGE_SCHEMA";
 
 const state = reactive<any>({
     formJson: [],
-    formConfig: {
-        ref: "myForm",
-        "show-message": true,
-        "label-position": "right",
-        "label-width": 100
-    },
     formModel: {},
     activeId: ""
 });
 
-const cacheState = JSON.parse(getItem(sessionKey));
+const cacheSchema = JSON.parse(getItem(sessionKey));
 
-if (cacheState) {
-    Object.assign(state, cacheState);
+if (cacheSchema) {
+    state.formJson = cacheSchema;
 }
 
 export const useFormData = () => {
     const getFormJson = computed(() => state.formJson);
-    const getFormConfig = computed(() => state.formConfig);
     const getFormModel = computed(() => state.formModel);
-    const getCurrentConfig = computed(() => getFormJson.value.find((item: any) => item.id === state.activeId) ?? {});
     const getActiveId = computed(() => state.activeId);
+    const getActiveInfo = computed(() => {
+        return unref(getFormJson).find((item: any) => item.id === unref(getActiveId)) ?? {};
+        // return getFlatJson(unref(getFormJson)).find((item: any) => item.id === state.activeId) ?? {};
+    });
+    // const getFlagFormJson = computed(() => getFlatJson(state.formJson));
+
+    // const getFlatJson = (list: any[]): any[] => {
+    //     const arr: any[] = [];
+    //     list.forEach((item) => {
+    //         arr.push(item);
+    //         if (item.children) {
+    //             arr.push(...getFlatJson(item.children));
+    //         }
+    //     });
+    //     return arr;
+    // };
 
     const createJson = (json: any) => {
-        const newClone = deepClone(json);
+        const newClone = deepClone(json.scaffold);
+
         const id = useNanoid();
         newClone.id = id;
-        newClone.model = `${json.componentName}_${id}`;
+        // if (newClone.formItem) {
+        //     newClone.formItem.prop = `${json.componentName}_${id}`;
+        // }
+
+        // if (newClone.children) {
+        //     newClone.children = json.children.map((item: any) => createJson(item));
+        // }
+
         return newClone;
     };
 
-    const addJson = (json: any, index: number = state.formJson.length) => {
-        const newJson = createJson(json);
-        state.formModel[newJson.model] = state.formModel[json.model];
-        state.formJson.splice(index, 0, newJson);
-        setActive(newJson.id);
+    const setFormJson = (json: any[]) => {
+        // state.formJson = json;
     };
 
-    const deleteJson = (index: number) => {
-        delete state.formModel[state.formJson[index].model];
-        state.formJson.splice(index, 1);
-        let activeIndex = index + 1;
-        if (index === 0) {
-            activeIndex = 0;
-        }
-        if (activeIndex > state.formJson.length - 1) {
-            activeIndex = state.formJson.length - 1;
-        }
-        setActive(state.formJson[activeIndex]?.id || "");
+    const addJson = (json: any, index: number = state.formJson.length, parent = state.formJson) => {
+        // const newJson = createJson(json);
+        // parent.splice(index, 0, newJson);
+        // setActive(newJson.id);
+    };
+
+    const deleteJson = (index: number, parent = state.formJson) => {
+        // parent.splice(index, 1);
+        // let activeIndex = index + 1;
+        // if (index === 0) {
+        //     activeIndex = 0;
+        // }
+        // if (activeIndex > parent.length - 1) {
+        //     activeIndex = parent.length - 1;
+        // }
+        // setActive(parent[activeIndex]?.id || "");
     };
 
     const clearJson = () => {
@@ -72,7 +90,7 @@ export const useFormData = () => {
     };
 
     const saveSession = (message = true) => {
-        setItem(sessionKey, JSON.stringify(state));
+        setItem(sessionKey, JSON.stringify(state.formJson));
         if (message) {
             ElMessage.success("保存到本地成功");
         }
@@ -80,11 +98,12 @@ export const useFormData = () => {
 
     return {
         getFormJson,
-        getFormConfig,
         getFormModel,
-        getCurrentConfig,
         getActiveId,
+        getActiveInfo,
+        // getFlagFormJson,
 
+        // setFormJson,
         addJson,
         createJson,
         deleteJson,

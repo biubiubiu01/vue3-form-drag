@@ -9,8 +9,13 @@ export default {
     formItem: {
         label: "文本输入框"
     },
+    col: {
+        span: 24
+    },
     description: "文本输入框",
     renderCode,
-    props: {},
+    props: {
+        placeholder: "请输入"
+    },
     config: setting
 };

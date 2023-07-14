@@ -9,8 +9,15 @@ export default {
     formItem: {
         label: "评分"
     },
+    col: {
+        span: 24
+    },
     description: "评分组件",
     renderCode,
-    props: {},
+    props: {
+        max: 5,
+        "low-threshold": 2,
+        "high-threshold": 4
+    },
     config: setting
 };

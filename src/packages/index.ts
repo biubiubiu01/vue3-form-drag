@@ -1,20 +1,34 @@
-import groupTable from "@/components/group-table/group-table.vue";
-
-const componentMap = new Map<string, any>();
-
-export const registerComponent = (key: string, component: any) => componentMap.set(key, component);
-
-export const createComponent = () => {
+export const registerComponent = () => {
+    const componentMap = new Map<string, any>();
     const modules: any = import.meta.glob("./**/*.vue", { eager: true, import: "default" });
 
     Object.keys(modules).forEach((key: string) => {
         const name = key.replace(/\.\/(.*)\/(.*)\/src\/index\.vue/, "$2");
-        registerComponent(name, modules[key]?.default || modules[key]);
+        componentMap.set(name, modules[key]?.default || modules[key]);
     });
 
-    registerComponent("group-table", groupTable);
-
     return componentMap;
+};
+
+export const registerSetting = () => {
+    const settingMap = new Map<string, any>();
+    const modules: any = import.meta.glob("./**/setting.ts", { eager: true, import: "default" });
+
+    Object.keys(modules).forEach((key: string) => {
+        const name = key.replace(/\.\/(.*)\/(.*)\/src\/setting\.ts/, "$2");
+        settingMap.set(name, modules[key]?.default || modules[key]);
+    });
+    return settingMap;
+};
+
+export const registerCode = () => {
+    const codeMap = new Map<string, any>();
+    const modules: any = import.meta.glob("./**/code.ts", { eager: true, import: "default" });
+    Object.keys(modules).forEach((key: string) => {
+        const name = key.replace(/\.\/(.*)\/(.*)\/src\/code\.ts/, "$2");
+        codeMap.set(name, modules[key]?.default || modules[key]);
+    });
+    return codeMap;
 };
 
 export const createFormWidget = () => {

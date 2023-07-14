@@ -9,25 +9,19 @@ const colorPickerSetting = [
                 name: "最小值",
                 field: "min",
                 componentName: "number",
-                props: {
-                    defaultValue: 0
-                }
+                props: {}
             },
             {
                 name: "最大值",
                 field: "max",
                 componentName: "number",
-                props: {
-                    defaultValue: 100
-                }
+                props: {}
             },
             {
                 name: "步长",
                 field: "step",
                 componentName: "number",
-                props: {
-                    defaultValue: 1
-                }
+                props: {}
             },
             {
                 name: "显示输入框",
@@ -41,9 +35,7 @@ const colorPickerSetting = [
                 show: (config: any) => {
                     return config["show-input"];
                 },
-                props: {
-                    defaultValue: true
-                }
+                props: {}
             },
             {
                 name: "输入框防抖",
@@ -51,9 +43,6 @@ const colorPickerSetting = [
                 componentName: "number",
                 show: (config: any) => {
                     return config["show-input"];
-                },
-                props: {
-                    defaultValue: 300
                 }
             },
             {
@@ -105,8 +94,7 @@ const colorPickerSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             }
         ]

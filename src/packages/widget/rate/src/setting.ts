@@ -8,26 +8,19 @@ const colorPickerSetting = [
             {
                 name: "最大分值",
                 field: "max",
-                componentName: "number",
-                props: {
-                    defaultValue: 5
-                }
+                componentName: "number"
             },
             {
                 name: "低到中阈值",
                 field: "low-threshold",
                 componentName: "number",
-                props: {
-                    defaultValue: 2
-                }
+                props: {}
             },
             {
                 name: "中到高阈值",
                 field: "high-threshold",
                 componentName: "number",
-                props: {
-                    defaultValue: 4
-                }
+                props: {}
             },
             {
                 name: "允许半选",
@@ -49,8 +42,7 @@ const colorPickerSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             }
         ]

@@ -1,19 +1,11 @@
-<!--
- * @Author: lzy
- * @Date: 2023-05-19 17:19:34
- * @LastEditors: lzy
- * @LastEditTime: 2023-06-13 14:48:56
- * @FilePath: \vue3-form-drag\src\views\editor\components\widget-panel\components\base-widget.vue
- * 
--->
 <template>
     <div class="base-widget-container flex-direction-column">
         <div class="base-widget-input">
-            <el-input v-model="keyword" placeholder="搜索组件" suffix-icon="search" />
+            <el-input v-model="keyword" placeholder="搜索组件" suffix-icon="search" @input="handleSearch" />
         </div>
         <el-scrollbar wrap-class="h100">
-            <el-collapse v-model="collapseList">
-                <el-collapse-item v-for="item in basicComponents" :key="item.type" :name="item.type">
+            <el-collapse :modelValue="openList">
+                <el-collapse-item v-for="item in componentList" :key="item.type" :name="item.type">
                     <template #title>
                         <div class="pl20 flex-row-center bold">
                             <base-icon :icon="item.icon" class="mr5" :size="20" />
@@ -47,17 +39,38 @@
 import draggable from "vuedraggable";
 import { basicComponents } from "./column.data";
 import { useFormData } from "@/hooks/useFormData";
+import { useDebounceFn } from "@vueuse/core";
+import { deepClone } from "@/utils";
 
-const keyword = ref("");
 const { createJson } = useFormData();
 
-const collapseList = ref<string[]>([]);
+const keyword = ref("");
 
-collapseList.value = basicComponents.map((item) => item.type);
+const componentList = ref<any[]>(basicComponents);
+
+const openList = computed(() => {
+    return unref(componentList).map((item) => item.type);
+});
 
 const handleClone = (e: any) => {
     return createJson(e);
 };
+
+const handleSearch = useDebounceFn((val: string) => {
+    const deepList = deepClone(basicComponents);
+    if (!val) {
+        componentList.value = deepList;
+        return;
+    }
+    deepList.forEach((item: any) => {
+        item.children = item.children.filter((child: any) => child.title.includes(val));
+    });
+    componentList.value = deepList.filter((item: any) => item.children.length > 0);
+}, 100);
+
+watch(keyword, (val) => {
+    handleSearch(val);
+});
 </script>
 
 <style scoped></style>

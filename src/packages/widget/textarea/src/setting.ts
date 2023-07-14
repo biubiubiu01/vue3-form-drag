@@ -27,9 +27,7 @@ const inputSetting = [
             {
                 name: "占位文本",
                 field: "placeholder",
-                props: {
-                    defaultValue: "请输入"
-                },
+                props: {},
                 componentName: "input",
                 description: "这是textarea的placeholder属性"
             },

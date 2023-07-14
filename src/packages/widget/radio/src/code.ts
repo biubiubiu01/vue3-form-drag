@@ -9,7 +9,7 @@
 import { transfromObject, omit } from "@/utils";
 
 const renderCode = (config: any) => {
-    return `<el-radio-group v-model="formModel.${config.model}">
+    return `<el-radio-group v-model="formModel.${config.formItem.prop}">
          ${renderRadio(config.props)}
     </el-radio-group>`;
 };

@@ -29,10 +29,6 @@ const filterOptions = computed(() => {
 });
 
 const selectValue = useVModel(props, "modelValue", emit, { defaultValue: props.defaultValue });
-
-if (props.defaultValue) {
-    emit("update:modelValue", unref(selectValue));
-}
 </script>
 
 <style scoped></style>

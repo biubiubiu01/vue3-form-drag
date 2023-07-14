@@ -7,6 +7,10 @@ export default defineComponent({
         },
         name: {
             type: String
+        },
+        item: {
+            type: Object,
+            default: () => {}
         }
     },
     setup(props, context) {
@@ -17,7 +21,7 @@ export default defineComponent({
             return (
                 <el-collapse model-value={name}>
                     <el-collapse-item title={name} name={name}>
-                        {slots.default?.()}
+                        {props.item.children.map((child: any) => slots.item?.({ element: child }))}
                     </el-collapse-item>
                 </el-collapse>
             );
@@ -27,7 +31,7 @@ export default defineComponent({
             if (props.collapse) {
                 return renderCollapse();
             }
-            return slots.default?.();
+            return <div>{slots.item?.({ element: props.item })}</div>;
         };
     }
 });

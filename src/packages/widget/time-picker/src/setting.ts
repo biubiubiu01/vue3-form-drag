@@ -22,16 +22,12 @@ const inputSetting = [
                 name: "显示格式",
                 field: "format",
                 componentName: "input",
-                props: {
-                    defaultValue: "HH:mm:ss"
-                }
+                props: {}
             },
             {
                 name: "显示清空",
                 field: "clearable",
-                props: {
-                    defaultValue: true
-                },
+                props: {},
                 componentName: "switch"
             },
             {
@@ -49,8 +45,7 @@ const inputSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             },
             {

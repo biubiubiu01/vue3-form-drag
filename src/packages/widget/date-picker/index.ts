@@ -9,8 +9,17 @@ export default {
     formItem: {
         label: "日期选择器"
     },
+    col: {
+        span: 24
+    },
     description: "日期选择器组件",
     renderCode,
-    props: {},
+    props: {
+        type: "date",
+        format: "YYYY/MM/DD",
+        "value-format": "YYYY-MM-DD",
+        clearable: true,
+        "prefix-icon": "Calendar"
+    },
     config: setting
 };

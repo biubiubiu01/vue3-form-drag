@@ -1,22 +1,14 @@
 <template>
-    <el-popover placement="bottom" :width="popoverWidth" trigger="click">
+    <el-popover :visible="pickerVisible" placement="bottom" :width="width" trigger="click">
         <template #reference>
-            <el-input
-                v-model="state.iconValue"
-                class="base-icon-picker"
-                :style="{ width }"
-                placeholder="点击右侧选择图标"
-                readonly
-                v-if="!$slots.reference"
-                size="default"
-            >
+            <el-input v-model="state.iconValue" class="base-icon-picker" :placeholder="placeholder" readonly @click="pickerVisible = true" v-if="!$slots.reference" :disabled="disabled" :size="size">
                 <template #append>
                     <base-icon :icon="state.iconValue" v-if="state.iconValue" :size="20" />
                 </template>
             </el-input>
             <slot name="reference"></slot>
         </template>
-        <div class="base-icon-content">
+        <div class="base-icon-content" v-click-outside="closePopover">
             <el-input v-model="state.iconFilter" placeholder="搜索图标" @input="handleSearchDebounce" />
             <el-scrollbar height="230px" style="margin-top: 8px">
                 <div class="base-icon-list">
@@ -30,6 +22,7 @@
 </template>
 
 <script lang="ts" setup>
+import { ClickOutside as vClickOutside } from "element-plus";
 import { Icons } from "@/plugins/icon";
 import { useDebounceFn } from "@vueuse/core";
 import { deepClone } from "@/utils";
@@ -46,24 +39,26 @@ const props = defineProps({
     },
     width: {
         type: String,
-        default: "100%"
+        default: "300px"
     },
-    popoverWidth: {
-        type: Number,
-        default: 300
+    size: {
+        type: String
     },
-    defaultValue: {
+    placeholder: {
         type: String,
-        default: ""
-    }
+        default: "点击右侧选择图标"
+    },
+    disabled: Boolean
 });
 
 const emit = defineEmits(["update:modelValue", "change"]);
 
 const allIconList = Object.keys(Icons);
 
+const pickerVisible = ref(false);
+
 const state = reactive<IconState>({
-    iconValue: props.defaultValue,
+    iconValue: "",
     iconFilter: "",
     iconList: deepClone(allIconList)
 });
@@ -72,13 +67,16 @@ const handleSearchDebounce = useDebounceFn(handleSearchChange, 650);
 
 function handleChooseIcon(val: string) {
     state.iconValue = val;
+    pickerVisible.value = false;
 }
 
 function handleSearchChange() {
-    state.iconList = state.iconFilter
-        ? allIconList.filter((item) => item.toLowerCase().includes(state.iconFilter.toLowerCase()))
-        : deepClone(allIconList);
+    state.iconList = state.iconFilter ? allIconList.filter((item) => item.toLowerCase().includes(state.iconFilter.toLowerCase())) : deepClone(allIconList);
 }
+
+const closePopover = () => {
+    pickerVisible.value = false;
+};
 
 watch(
     () => props.modelValue,

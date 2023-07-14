@@ -9,8 +9,17 @@ export default {
     formItem: {
         label: "时间选择"
     },
+    col: {
+        span: 24
+    },
     description: "时间选择组件",
     renderCode,
-    props: {},
+    props: {
+        format: "HH:mm",
+        start: "09:00",
+        end: "18:00",
+        step: "00:30",
+        clearable: true
+    },
     config: setting
 };

@@ -3,13 +3,11 @@ import { format } from "prettier";
 import parserHtml from "prettier/parser-html";
 import parserTypeScript from "prettier/parser-typescript";
 import parserPostcss from "prettier/parser-postcss";
-import { transfromObject, omit } from "@/utils";
-import { useFormData } from "./useFormData";
 
 export const useGennerateCode = () => {
     const gennerateCode = (params: any) => {
         const template = gennerateTemplate(params);
-        const script = gennerateScript(params.model);
+        const script = gennerateScript();
         const style = gennerateStyle();
         return format(template + script + style, {
             semi: true,
@@ -19,33 +17,17 @@ export const useGennerateCode = () => {
     };
 
     const gennerateTemplate = ({ schema }: any) => {
-        const { getFormConfig } = useFormData();
-        const formConfig: any = { ...omit(unref(getFormConfig), "show-suffix") };
-        if (formConfig["show-suffix"]) {
-            formConfig["label-suffix"] = "：";
-        }
         return `<template>
-                    <el-form :model="formModel" ${transfromObject(formConfig)} @submit.prevent>
-                        ${gennerateFormItem(schema)}
-                    </el-form>
+                   ${schema.reduce((t: string, c: any) => {
+                       return t + ` ${c?.renderCode?.(c)}`;
+                   }, "")}
                 </template>`;
     };
 
-    const gennerateFormItem = (schema: any[]) => {
-        return schema.reduce((t: string, c: any) => {
-            return (
-                t +
-                `<el-form-item prop="${c.model}" ${transfromObject(c.formItem)}>
-                    ${c?.renderCode?.(c)}
-                </el-form-item>\n\n`
-            );
-        }, "");
-    };
-
-    const gennerateScript = (model: any) => {
+    const gennerateScript = () => {
         return `<script lang="ts" setup>
                     import {reactive} from "vue"
-                    const formModel=reactive(${JSON.stringify(model)})  
+                    const formModel=reactive({})  
                 </script>`;
     };
 

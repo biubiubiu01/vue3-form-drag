@@ -28,8 +28,7 @@ const radioSetting = [
                             label: "按钮",
                             value: "button"
                         }
-                    ],
-                    defaultValue: ""
+                    ]
                 }
             },
             {
@@ -37,8 +36,7 @@ const radioSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             },
             {
@@ -50,9 +48,6 @@ const radioSetting = [
                 name: "选中文本颜色",
                 field: "text-color",
                 componentName: "color-picker",
-                props: {
-                    defaultValue: "#ffffff"
-                },
                 show: (config: any) => {
                     return config.shape === "button";
                 }
@@ -61,9 +56,6 @@ const radioSetting = [
                 name: "选中背景颜色",
                 field: "fill",
                 componentName: "color-picker",
-                props: {
-                    defaultValue: "#409EFF"
-                },
                 show: (config: any) => {
                     return config.shape === "button";
                 }
@@ -79,16 +71,6 @@ const radioSetting = [
                 field: "options",
                 componentName: "group-table",
                 props: {
-                    defaultValue: [
-                        {
-                            label: "选项一",
-                            value: "1"
-                        },
-                        {
-                            label: "选项二",
-                            value: "2"
-                        }
-                    ],
                     columns: [
                         {
                             label: "名称",

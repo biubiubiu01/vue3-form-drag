@@ -24,8 +24,7 @@ const selectSetting = [
                 field: "size",
                 componentName: "radio",
                 props: {
-                    options: sizeOption,
-                    defaultValue: "default"
+                    options: sizeOption
                 }
             },
             {
@@ -50,9 +49,7 @@ const selectSetting = [
                 name: "折叠选项",
                 field: "collapse-tags",
                 componentName: "switch",
-                props: {
-                    defaultValue: true
-                },
+                props: {},
                 show: (config: any) => {
                     return config.multiple;
                 }
@@ -69,9 +66,7 @@ const selectSetting = [
                 name: "最多选择",
                 field: "multiple-limit",
                 componentName: "number",
-                props: {
-                    defaultValue: 0
-                },
+                props: {},
                 show: (config: any) => {
                     return config.multiple;
                 }
@@ -80,9 +75,7 @@ const selectSetting = [
                 name: "显示折叠数量",
                 field: "max-collapse-tags",
                 componentName: "number",
-                props: {
-                    defaultValue: 1
-                },
+                props: {},
                 show: (config: any) => {
                     return config["collapse-tags"];
                 }
@@ -141,9 +134,7 @@ const selectSetting = [
                 name: "加载中文本",
                 field: "loading-text",
                 componentName: "input",
-                props: {
-                    defaultValue: "加载中"
-                },
+                props: {},
                 show: (config: any) => {
                     return config.remote;
                 }
@@ -164,16 +155,6 @@ const selectSetting = [
                 field: "options",
                 componentName: "group-table",
                 props: {
-                    defaultValue: [
-                        {
-                            label: "下拉一",
-                            value: "1"
-                        },
-                        {
-                            label: "下拉二",
-                            value: "2"
-                        }
-                    ],
                     columns: [
                         {
                             label: "名称",
