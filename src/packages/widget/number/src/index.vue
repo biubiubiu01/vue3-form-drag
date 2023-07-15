@@ -1,7 +1,5 @@
 <template>
-    <form-item :label="label" :prop="name">
-        <el-input-number v-model="value" v-bind="$attrs" />
-    </form-item>
+    <el-input-number v-model="value" v-bind="$attrs" />
 </template>
 
 <script lang="ts" setup>
@@ -13,12 +11,6 @@ const props = defineProps({
     },
     defaultValue: {
         type: Number
-    },
-    label: {
-        type: String
-    },
-    name: {
-        type: String
     }
 });
 

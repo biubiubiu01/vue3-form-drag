@@ -3,6 +3,7 @@ import { format } from "prettier";
 import parserHtml from "prettier/parser-html";
 import parserTypeScript from "prettier/parser-typescript";
 import parserPostcss from "prettier/parser-postcss";
+import { transfromObject } from "@/utils";
 
 export const useGennerateCode = () => {
     const gennerateCode = (params: any) => {
@@ -16,11 +17,19 @@ export const useGennerateCode = () => {
         });
     };
 
-    const gennerateTemplate = ({ schema }: any) => {
+    const gennerateTemplate = ({ schema, formSetting }: any) => {
         return `<template>
-                   ${schema.reduce((t: string, c: any) => {
-                       return t + ` ${c?.renderCode?.(c)}`;
-                   }, "")}
+                   <el-form ${transfromObject(formSetting)}>
+                            ${schema.reduce((t: string, c: any) => {
+                                return (
+                                    t +
+                                    `
+                                <el-form-item ${transfromObject(c.formItem)}> 
+                                  ${c?.renderCode?.(c)} 
+                                </el-form-item>\n`
+                                );
+                            }, "")}
+                   </el-form>
                 </template>`;
     };
 

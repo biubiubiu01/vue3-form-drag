@@ -1,13 +1,19 @@
-import { createComponent } from "@/plugins/create";
+import setting from "./src/setting";
+import renderCode from "./src/code";
 
-export default createComponent({
+export default {
     sort: 5,
-
     componentName: "switch",
-
     title: "switch开关",
-
     icon: "svg-switch",
-
-    description: "switch开关"
-});
+    formItem: {
+        label: "switch开关"
+    },
+    col: {
+        span: 12
+    },
+    description: "switch开关",
+    renderCode,
+    props: {},
+    config: setting
+};

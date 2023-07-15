@@ -1,6 +1,6 @@
 import { useStorage } from "./useStorage";
 import { ElMessage } from "element-plus";
-import { deepClone, omit } from "@/utils";
+import { deepClone } from "@/utils";
 import { useNanoid } from "./useNanoid";
 
 const { setItem, getItem } = useStorage();
@@ -9,77 +9,75 @@ const sessionKey = "PAGE_SCHEMA";
 const state = reactive<any>({
     formJson: [],
     formModel: {},
-    activeId: ""
+    activeId: "",
+    formSetting: {}
 });
 
 const cacheSchema = JSON.parse(getItem(sessionKey));
 
 if (cacheSchema) {
-    state.formJson = cacheSchema;
+    Object.assign(state, cacheSchema);
 }
 
 export const useFormData = () => {
     const getFormJson = computed(() => state.formJson);
     const getFormModel = computed(() => state.formModel);
     const getActiveId = computed(() => state.activeId);
+    const getFormSetting = computed(() => state.formSetting);
     const getActiveInfo = computed(() => {
-        return unref(getFormJson).find((item: any) => item.id === unref(getActiveId)) ?? {};
-        // return getFlatJson(unref(getFormJson)).find((item: any) => item.id === state.activeId) ?? {};
+        return getFlatJson(unref(getFormJson)).find((item: any) => item.id === state.activeId) ?? {};
     });
-    // const getFlagFormJson = computed(() => getFlatJson(state.formJson));
+    const getFlagFormJson = computed(() => getFlatJson(state.formJson));
 
-    // const getFlatJson = (list: any[]): any[] => {
-    //     const arr: any[] = [];
-    //     list.forEach((item) => {
-    //         arr.push(item);
-    //         if (item.children) {
-    //             arr.push(...getFlatJson(item.children));
-    //         }
-    //     });
-    //     return arr;
-    // };
+    const getFlatJson = (list: any[]): any[] => {
+        const arr: any[] = [];
+        list.forEach((item) => {
+            arr.push(item);
+            if (item.children) {
+                arr.push(...getFlatJson(item.children));
+            }
+        });
+        return arr;
+    };
 
     const createJson = (json: any) => {
-        const newClone = deepClone(json.scaffold);
+        const newClone = deepClone(json);
 
         const id = useNanoid();
         newClone.id = id;
-        // if (newClone.formItem) {
-        //     newClone.formItem.prop = `${json.componentName}_${id}`;
-        // }
-
-        // if (newClone.children) {
-        //     newClone.children = json.children.map((item: any) => createJson(item));
-        // }
+        if (newClone.formItem) {
+            newClone.formItem.prop = `${json.componentName}_${id}`;
+        }
 
         return newClone;
     };
 
     const setFormJson = (json: any[]) => {
-        // state.formJson = json;
+        state.formJson = json;
     };
 
-    const addJson = (json: any, index: number = state.formJson.length, parent = state.formJson) => {
-        // const newJson = createJson(json);
-        // parent.splice(index, 0, newJson);
-        // setActive(newJson.id);
+    const addJson = (json: any, index: number = state.formJson.length) => {
+        const newJson = createJson(json);
+        state.formJson.splice(index, 0, newJson);
+        setActive(newJson.id);
     };
 
-    const deleteJson = (index: number, parent = state.formJson) => {
-        // parent.splice(index, 1);
-        // let activeIndex = index + 1;
-        // if (index === 0) {
-        //     activeIndex = 0;
-        // }
-        // if (activeIndex > parent.length - 1) {
-        //     activeIndex = parent.length - 1;
-        // }
-        // setActive(parent[activeIndex]?.id || "");
+    const deleteJson = (index: number) => {
+        state.formJson.splice(index, 1);
+        let activeIndex = index + 1;
+        if (index === 0) {
+            activeIndex = 0;
+        }
+        if (activeIndex > state.formJson.length - 1) {
+            activeIndex = state.formJson.length - 1;
+        }
+        setActive(state.formJson[activeIndex]?.id || "");
     };
 
     const clearJson = () => {
         state.formJson = [];
         state.formModel = {};
+        state.formSetting = {};
         state.activeId = "";
         saveSession(false);
     };
@@ -90,7 +88,7 @@ export const useFormData = () => {
     };
 
     const saveSession = (message = true) => {
-        setItem(sessionKey, JSON.stringify(state.formJson));
+        setItem(sessionKey, JSON.stringify(state));
         if (message) {
             ElMessage.success("保存到本地成功");
         }
@@ -101,9 +99,10 @@ export const useFormData = () => {
         getFormModel,
         getActiveId,
         getActiveInfo,
-        // getFlagFormJson,
+        getFlagFormJson,
+        getFormSetting,
 
-        // setFormJson,
+        setFormJson,
         addJson,
         createJson,
         deleteJson,

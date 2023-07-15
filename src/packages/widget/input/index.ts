@@ -1,13 +1,19 @@
-import { createComponent } from "@/plugins/create";
+import setting from "./src/setting";
+import renderCode from "./src/code";
 
-export default createComponent({
+export default {
     sort: 1,
-
     componentName: "input",
-
     title: "单行文本",
-
     icon: "svg-input",
-
-    description: "单行文本输入框"
-});
+    formItem: {
+        label: "单行文本"
+    },
+    col: {
+        span: 12
+    },
+    description: "单行文本",
+    renderCode,
+    props: {},
+    config: setting
+};

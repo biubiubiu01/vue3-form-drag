@@ -15,9 +15,9 @@
             children: 'children',
             label: 'title'
         }"
+        :allow-drop="allowDrop"
         :expand-on-click-node="false"
         :filter-node-method="filterNode"
-        :allow-drop="allowDrop"
         @node-click="handleClickItem"
     >
         <template #default="{ node, data }">
@@ -47,10 +47,7 @@ const filterNode = (value: string, data: Tree) => {
 };
 
 const allowDrop = (moveNode: Tree, inNode: Tree, type: string) => {
-    if (moveNode.level === 1 && inNode.level === 1 && type !== "inner") return true;
-    if (moveNode.level > 1 && inNode.level >= 1 && type === "inner") return false;
-    if (moveNode.level === 1 && (moveNode.data?.children?.length || inNode.data.type !== "wrapper")) return false;
-
+    if (type === "inner") return false;
     return true;
 };
 

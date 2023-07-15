@@ -1,7 +1,10 @@
 <template>
     <div class="editor-header flex-row-center justify-between">
         <div class="editor-header-left flex-row-center">
-            <div class="editor-header-logo"></div>
+            <div class="editor-header-logo flex-row-center pointer">
+                <base-icon icon="svg-logo" :size="40" class="mr5" />
+                <img src="@/assets/image/logo.png" alt="" style="width: 200px" />
+            </div>
             <div class="editor-header-github ml20 flex-row-center" @click="handleToGitHub">
                 <base-icon icon="svg-github" :size="20" class="mr5" />
                 GitHub
@@ -29,6 +32,9 @@
             <el-button type="primary" @click="handleOutputCode">出码</el-button>
             <el-button type="primary" @click="handlePreview">预览</el-button>
         </div>
+        <el-drawer v-model="drawer" title="查看json" direction="rtl">
+            <base-json :data="getFormJson" :showLineNumber="false"></base-json>
+        </el-drawer>
     </div>
 </template>
 
@@ -39,19 +45,19 @@ import { useFormData } from "@/hooks/useFormData";
 import { useGennerateCode } from "@/hooks/useGennerateCode";
 import { useHistory } from "@/hooks/useHistory";
 
-const { getFormJson, getFormModel, saveSession, clearJson } = useFormData();
+const { getFormJson, getFormSetting, saveSession, clearJson } = useFormData();
 const { gennerateCode, outputFile } = useGennerateCode();
 const { redoDisabled, undoDisabled, executeRedo, executeUndo, executeRecord } = useHistory();
 
+const drawer = ref(false);
+
 const handleCreateJSON = () => {
-    console.log(getFormJson);
+    drawer.value = true;
 };
 
 const handleOutputCode = () => {
-    const code = gennerateCode({ schema: getFormJson.value });
-    console.log(code);
-
-    // outputFile(code, "form.vue");
+    const code = gennerateCode({ schema: getFormJson.value, formSetting: getFormSetting.value });
+    outputFile(code, "form.vue");
 };
 
 const handleClearJson = () => {

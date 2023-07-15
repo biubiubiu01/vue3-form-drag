@@ -1,21 +1,14 @@
 <template>
     <div class="setting-panel panel-container">
         <el-tabs v-model="activeTab" class="h100 flex-direction-column">
-            <el-tab-pane v-for="tab in getTabs" :key="tab.title" :name="tab.title" lazy>
+            <el-tab-pane v-for="tab in tabList" :key="tab.key" :name="tab.key" lazy>
                 <template #label>
                     <div class="panel-item">
                         {{ tab.title }}
                     </div>
                 </template>
                 <el-scrollbar wrap-class="h100">
-                    <el-form size="small" label-width="90px" label-position="left">
-                        <el-form-item label="组件类型">
-                            <el-tag> {{ getActiveInfo.type }}</el-tag>
-                        </el-form-item>
-                        <div v-for="item in tab.children" :key="item.name">
-                            <render-item :element="item" />
-                        </div>
-                    </el-form>
+                    <component :is="tab.component" />
                 </el-scrollbar>
             </el-tab-pane>
         </el-tabs>
@@ -23,13 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useFormData } from "@/hooks/useFormData";
-import { useSetting } from "@/hooks/useSetting";
+import { tabList } from "./components/column";
 
-const { getActiveInfo } = useFormData();
-const { getComponentSetting } = useSetting();
-
-const getTabs = computed(() => getComponentSetting(unref(getActiveInfo).type));
-
-const activeTab = ref("常规");
+const activeTab = ref("attr");
 </script>
