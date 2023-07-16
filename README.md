@@ -29,14 +29,15 @@
 > vue-antd-admin后台管理系统，有兴趣可以看看：[vue-antd-admin](https://github.com/biubiubiu01/vue-antd-admin)
 
 
+
 主界面:
-![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/main/preview/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230716102034.png)
+![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/gh-pages/preview/1.png)
 
 预览页面：
-![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/169f9f37ebda531d6969be0ec5898c5aa737b5cf/preview/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230716102039.png)
+![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/gh-pages/preview/2.png)
 
 出码导出文件页面：
-![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/169f9f37ebda531d6969be0ec5898c5aa737b5cf/preview/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20230716102043.png)
+![输入图片说明](https://gitee.com/gist006/vue3-form-drag/raw/gh-pages/preview/3.png)
 
 
 ## 使用说明
