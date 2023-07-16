@@ -7,7 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+
 node_modules
+build.sh
 dist
 dist-ssr
 *.local
@@ -15,6 +17,7 @@ dist-ssr
 report.html
 components.d.ts
 auto-imports.d.ts
+*.eslintrc-auto-import
 
 
 # Editor directories and files

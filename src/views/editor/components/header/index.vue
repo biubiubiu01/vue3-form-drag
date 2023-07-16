@@ -44,10 +44,12 @@ import Switch from "./components/switch.vue";
 import { useFormData } from "@/hooks/useFormData";
 import { useGennerateCode } from "@/hooks/useGennerateCode";
 import { useHistory } from "@/hooks/useHistory";
+import { useRouter } from "vue-router";
 
 const { getFormJson, getFormSetting, saveSession, clearJson } = useFormData();
 const { gennerateCode, outputFile } = useGennerateCode();
 const { redoDisabled, undoDisabled, executeRedo, executeUndo, executeRecord } = useHistory();
+const router = useRouter();
 
 const drawer = ref(false);
 
@@ -67,7 +69,9 @@ const handleClearJson = () => {
 
 const handlePreview = () => {
     saveSession();
-    window.open("/#/preview");
+    router.push({
+        path: "/preview"
+    });
 };
 
 const handleToGitHub = () => {

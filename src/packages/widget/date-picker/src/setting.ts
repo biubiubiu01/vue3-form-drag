@@ -2,7 +2,7 @@ import { sizeOption } from "@/constant/size";
 import { dateOption } from "@/constant/date";
 import { useFormData } from "@/hooks/useFormData";
 
-const { getCurrentConfig } = useFormData();
+const { getActiveInfo } = useFormData();
 
 const inputSetting = [
     {
@@ -21,8 +21,8 @@ const inputSetting = [
                     options: dateOption,
                     onChange: (val: string) => {
                         const findItem = dateOption.find((item) => item.value === val);
-                        unref(getCurrentConfig).props.format = findItem?.format;
-                        unref(getCurrentConfig).props["value-format"] = findItem?.valueFormat;
+                        unref(getActiveInfo).props.format = findItem?.format;
+                        unref(getActiveInfo).props["value-format"] = findItem?.valueFormat;
                     }
                 },
                 componentName: "select"
