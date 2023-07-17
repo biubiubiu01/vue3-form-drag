@@ -64,7 +64,7 @@ export default (): UserConfig => {
         ],
         optimizeDeps: {
             // 预加载
-            include: ["element-plus/lib/locale/lang/zh-cn"]
+            include: ["element-plus/dist/locale/zh-cn.mjs"]
         },
         resolve: {
             alias: {
